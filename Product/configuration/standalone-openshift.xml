@@ -138,6 +138,9 @@
                       <user-name>${env.SQLSERVER_USER:product}</user-name>
                       <password>${env.SQLSERVER_PASSWORD:password}</password>
                     </security>
+                    <validation>
+      <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mssql.MSSQLValidConnectionChecker"></valid-connection-checker>
+    </validation>
  </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
