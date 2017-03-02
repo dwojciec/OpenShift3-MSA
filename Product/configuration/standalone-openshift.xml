@@ -129,16 +129,16 @@
             </formatter>
         </subsystem>
         <subsystem xmlns="urn:jboss:domain:datasources:1.2">
-            <datasources>
+               <datasources>
 <datasource jndi-name="java:jboss/datasources/ExampleDS" pool-name="ExampleDS" enabled="true" use-java-context="true"> <connection-url>jdbc:h2:mem:test;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE</connection-url> <driver>h2</driver> <security> <user-name>sa</user-name> <password>sa</password> </security> </datasource>
                 <datasource jndi-name="java:jboss/datasources/ProductDS" enabled="true" use-java-context="true" pool-name="ProductDS">
-                    <connection-url>jdbc:mysql://${env.DATABASE_SERVICE_HOST:product-db}:${env.DATABASE_SERVICE_PORT:3306}/${env.MYSQL_DATABASE:product}</connection-url>
-                    <driver>mysql</driver>
+                    <connection-url>jdbc:microsoft:sqlserver://${env.DATABASE_SERVICE_HOST:product-db}:${env.DATABASE_SERVICE_PORT:1433};DatabaseName=${env.SQLSERVER_DATABASE:product}</connection-url>
+                    <driver>sqlserver</driver>
                     <security>
-                      <user-name>${env.MYSQL_USER:product}</user-name>
-                      <password>${env.MYSQL_PASSWORD:password}</password>
+                      <user-name>${env.SQLSERVER_USER:product}</user-name>
+                      <password>${env.SQLSERVER_PASSWORD:password}</password>
                     </security>
-                </datasource>
+ </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
                         <xa-datasource-class>org.h2.jdbcx.JdbcDataSource</xa-datasource-class>
@@ -149,6 +149,9 @@
                     <driver name="postgresql" module="org.postgresql">
                         <xa-datasource-class>org.postgresql.xa.PGXADataSource</xa-datasource-class>
                     </driver>
+                     <driver name="sqlserver" module="com.microsoft">
+      <xa-datasource-class>com.microsoft.sqlserver.jdbc.SQLServerXADataSource</xa-datasource-class>
+    </driver>
                 </drivers>
             </datasources>
         </subsystem>
