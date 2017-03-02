@@ -138,7 +138,7 @@
                       <password>${env.SQLSERVER_PASSWORD:sq1admin}</password>
                     </security>
                        <validation>
-                      <valid-connection-checker class-name=\"org.jboss.jca.adapters.jdbc.extensions.sqlserver.MSSQLValidConnectionChecker\"></valid-connection-checker>
+                      <valid-connection-checker>class-name="org.jboss.jca.adapters.jdbc.extensions.sqlserver.MSSQLValidConnectionChecker"></valid-connection-checker>
                     </validation>
  </datasource>
                 <drivers>
