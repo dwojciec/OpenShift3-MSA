@@ -131,15 +131,15 @@
         <subsystem xmlns="urn:jboss:domain:datasources:1.2">
                <datasources>
                 <datasource jndi-name="java:jboss/datasources/ProductDS" enabled="true" use-java-context="true" pool-name="ProductDS">
-                    <connection-url>jdbc:microsoft:sqlserver://wassqlserver.database.windows.net:1433;DatabaseName=waspocdb</connection-url>
+                    <connection-url>jdbc:microsoft:sqlserver://${env.DATABASE_SERVICE_HOST:wassqlserver.database.windows.net}:${env.DATABASE_SERVICE_PORT:1433};DatabaseName=${env.SQLSERVER_DATABASE:waspocdb}</connection-url>
                     <driver>sqlserver</driver>
                     <security>
-                      <user-name>sqladmin@wassqlserver</user-name>
-                      <password>sq1admin</password>
+                      <user-name>${env.SQLSERVER_USER:sqladmin@wassqlserver}</user-name>
+                      <password>${env.SQLSERVER_PASSWORD:sq1admin}</password>
                     </security>
                        <validation>
-                       <valid-connection-checker class-name="org.jboss.jca.adapters.jdbc.extensions.mssql.MSSQLValidConnectionChecker"></valid-connection-checker>
-                     </validation>
+                      <valid-connection-checker class-name=\"org.jboss.jca.adapters.jdbc.extensions.sqlserver.MSSQLValidConnectionChecker\"></valid-connection-checker>
+                    </validation>
  </datasource>
                 <drivers>
                     <driver name="h2" module="com.h2database.h2">
