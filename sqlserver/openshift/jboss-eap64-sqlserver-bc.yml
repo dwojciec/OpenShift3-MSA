@@ -30,7 +30,7 @@ Items:
       git:
         ref: master
         uri: https://github.com/dwojciec/Openshift3-MSA.git
-        contextdir: sqlserver
+        contextDir: sqlserver
     strategy:
       type: Docker
       dockerStrategy:
