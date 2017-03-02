@@ -1,0 +1,44 @@
+apiVersion: v1
+kind: List
+Items:
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    creationTimestamp: null
+    labels:
+      application: jboss-eap64-sqlserver
+      template: eap6-basic-sti
+    name: jboss-eap64-sqlserver
+  spec: {}
+  status:
+    dockerImageRepository: ""
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    creationTimestamp: null
+    labels:
+      app: jboss-eap64-sqlserver
+    name: jboss-eap64-sqlserver
+  spec:
+    output:
+      to:
+        kind: ImageStreamTag
+        name: jboss-eap64-sqlserver:latest
+    resources: {}
+    source:
+      type: Git
+      git:
+        ref: master
+        uri: https://github.com/dwojciec/Openshift3-MSA.git
+        contextdir: sqlserver
+    strategy:
+      type: Docker
+      dockerStrategy:
+        from:
+          kind: ImageStreamTag
+          name: jboss-eap64-openshift:1.1-6
+          namespace: openshift
+    triggers:
+    - type: ImageChange
+      imageChange: {}
+    - type: ConfigChange
